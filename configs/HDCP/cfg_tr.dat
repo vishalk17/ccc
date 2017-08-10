@@ -1,0 +1,5 @@
+# HDCP 2.x configure info for transmitter side
+
+kpub_dcp_file = /data/data/HDCP/kpub_dcp.dat
+pairing_info_file = /data/data/HDCP/pairinfo.dat
+
