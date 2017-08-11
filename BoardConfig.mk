@@ -181,9 +181,11 @@ INPUT_TOUCH_DRIVER := TOUCH_LT
 # Compatibility with pre-kitkat Sensor HALs
 SENSORS_NEED_SETRATE_ON_ENABLE := true
 
-##
-## Extras
-##
+# Vold
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
+
+
 
 # Bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
