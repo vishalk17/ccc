@@ -7,6 +7,9 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 # inherit from the proprietary version
 -include vendor/samsung/grandprimevelte/BoardConfigVendor.mk
 
+TARGET_NO_BOOTLOADER := true
+#TARGET_NO_FACTORYIMAGE := true
+
 TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := mrvl
@@ -21,11 +24,10 @@ TARGET_BOOTLOADER_BOARD_NAME := grandprimevelte
 
 TARGET_USES_64_BIT_BINDER := true
 TARGET_IS_64_BIT := true
-BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS := \
 	--ramdisk_offset 0x01000000 \
 	--pagesize 2048 \
-	--board MRVL
+	--board vishalk17
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.7/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 
@@ -39,10 +41,53 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/f_mass_storage/lun0/file"
 BOARD_USES_MMCUTILS := true
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_HAS_NO_MISC_PARTITION := true
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte
+TARGET_KERNEL_CONFIG := grandprimevelte_defconfig
+
+# Kernel_definations
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/grandprimevelte/custom_mkbootimg.mk
+BOARD_CUSTOM_MKBOOTIMG := device/samsung/grandprimevelte/pxa1908-mkbootimg
+TARGET_CUSTOM_DTBTOOL := device/samsung/grandprimevelte/pxa1908-dtbtool
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_PREBUILT_DT := true
+TARGET_PREBUILT_DT := device/samsung/grandprimevelte/dt.img
+BOARD_DTBTOOL_ARGS :=
+BOARD_MKBOOTIMG_ARGS := --signature device/samsung/grandprimevelte/boot.img-signature --unknown 0x3000000
+BOARD_UBOOT_ARGS := -A arm64 -O linux -T kernel -C gzip -a 01000000 -e 01000000 -n "pxa1928dkb linux"
+BOARD_KERNEL_CMDLINE := androidboot.hardware=pxa1908 androidboot.selinux=permissive
+TARGET_KERNEL_CONFIG := android-base.cfg
+TARGET_KERNEL_CONFIG := android
+#TARGET_KERNEL_VARIANT_CONFIG := android-base.cfg
+
+# System image configuration
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_USES_MMCUTILS := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HAS_NO_MISC_PARTITION := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+
+#
+# Product-specific compile-time definitions
+#
+
+BOARD_VENDOR := samsung
+TARGET_BOARD_PLATFORM := mrvl
+TARGET_BOARD_PLATFORM_GPU := vivante-gc700
+TARGET_SOC := pxa1908
+
+# MRVL hardware
+BOARD_USES_MRVL_HARDWARE := true
+
 
 TARGET_PREBUILT_KERNEL := device/samsung/grandprimevelte/kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
+
+
+# FIX Freezing
+TARGET_NO_SENSOR_PERMISSION_CHECK := true
+TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 
 # build old-style zip files (required for ota updater)
 BLOCK_BASED_OTA := false
