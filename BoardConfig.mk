@@ -47,8 +47,8 @@ TARGET_KERNEL_CONFIG := grandprimevelte_defconfig
 
 # Kernel_definations
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/grandprimevelte/custom_mkbootimg.mk
-BOARD_CUSTOM_MKBOOTIMG := device/samsung/grandprimevelte/pxa1908-mkbootimg
-TARGET_CUSTOM_DTBTOOL := device/samsung/grandprimevelte/pxa1908-dtbtool
+BOARD_CUSTOM_MKBOOTIMG := device/samsung/grandprimevelte/pxa1088-mkbootimg
+TARGET_CUSTOM_DTBTOOL := device/samsung/grandprimevelte/pxa1088-dtbtool
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_PREBUILT_DT := true
 TARGET_PREBUILT_DT := device/samsung/grandprimevelte/dt.img
