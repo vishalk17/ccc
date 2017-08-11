@@ -200,3 +200,6 @@ INIT_BOOTCHART := true
 # MRVL
 BOARD_USES_MARVELL_HWC_ENHANCEMENT := true
 #COMMON_GLOBAL_CFLAGS += -DMARVELL_HWC_ENHANCEMENT
+
+
+-include vendor/lge/bullhead/BoardConfigVendor.mk
