@@ -202,4 +202,9 @@ BOARD_USES_MARVELL_HWC_ENHANCEMENT := true
 #COMMON_GLOBAL_CFLAGS += -DMARVELL_HWC_ENHANCEMENT
 
 
--include vendor/samsung/grandprimevelte/BoardConfigVendor.mk
+
+#Hack for prebuilt kernel
+ifeq ($(TARGET_DEVICE), grandprimevelte)
+$(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
+$(shell touch $(OUT)/obj/KERNEL_OBJ/usr/export_includes)
+endif
